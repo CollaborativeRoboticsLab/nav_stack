@@ -23,3 +23,9 @@ ros2 launch nav2_bringup navigation_launch.py
 ```bash
 ros2 launch slam_toolbox online_async_launch.py
 ```
+
+## Save Map
+
+```bash
+ros2 run nav2_map_server map_saver_cli -f ~/map
+```
