@@ -22,7 +22,8 @@ RUN apt-get install -y --no-install-recommends ros-dev-tools \
                                                ros-$ROS_DISTRO-tf2-eigen \
                                                ros-$ROS_DISTRO-rmw-cyclonedds-cpp \
                                                ros-$ROS_DISTRO-navigation2 \
-                                               ros-$ROS_DISTRO-nav2-bringup
+                                               ros-$ROS_DISTRO-nav2-bringup \
+                                               ros-$ROS_DISTRO-slam-toolbox
 
 RUN apt-get clean
 

@@ -12,20 +12,8 @@ sudo apt install ros-$ROS_DISTRO-navigation2 ros-$ROS_DISTRO-nav2-bringup
 sudo apt install ros-$ROS_DISTRO-slam-toolbox
 ```
 
-## Launch Nav2
+## Launch Nav2 with SLAM Toolbox
 
 ```bash
-ros2 launch nav2_bringup navigation_launch.py
-```
-
-## Launch SLAM
-
-```bash
-ros2 launch slam_toolbox online_async_launch.py
-```
-
-## Save Map
-
-```bash
-ros2 run nav2_map_server map_saver_cli -f ~/map
+ros2 launch nav2_bringup system.launch.py
 ```
