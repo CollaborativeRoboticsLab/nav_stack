@@ -1,5 +1,5 @@
 services:
-  astra_legacy:
+  navigation:
     image: ghcr.io/airesearchlab/navigation:humble
     environment:
       - LAUNCH_FILENAME=system.launch.py

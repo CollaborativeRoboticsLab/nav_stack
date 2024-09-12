@@ -30,7 +30,6 @@ def generate_launch_description():
     use_respawn     = LaunchConfiguration('use_respawn')
     log_level       = LaunchConfiguration('log_level')
     slam            = LaunchConfiguration('slam')
-    # map_yaml_file   = LaunchConfiguration('map')
 
     remappings = [('/tf', 'tf'),
                   ('/tf_static', 'tf_static')]
