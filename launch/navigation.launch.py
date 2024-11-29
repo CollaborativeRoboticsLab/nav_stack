@@ -27,6 +27,7 @@ def generate_launch_description():
     container_name_full = (namespace, '/', container_name)
     use_respawn         = LaunchConfiguration('use_respawn')
     log_level           = LaunchConfiguration('log_level')
+    bond_timeout        = LaunchConfiguration('bond_timeout')
 
     lifecycle_nodes = ['controller_server',
                        'smoother_server',
@@ -89,6 +90,10 @@ def generate_launch_description():
     declare_log_level_cmd = DeclareLaunchArgument(
         'log_level', default_value='info',
         description='log level')
+    
+    declare_bond_timeout_cmd = DeclareLaunchArgument(
+        'bond_timeout', default_value='20.0',
+        description='bond_timeout')
 
     load_nodes = GroupAction(
         condition=IfCondition(PythonExpression(['not ', use_composition])),
@@ -171,7 +176,7 @@ def generate_launch_description():
                 arguments=['--ros-args', '--log-level', log_level],
                 parameters=[{'use_sim_time': use_sim_time},
                             {'autostart': autostart},
-                            {'bond_timeout':0.0},
+                            {'bond_timeout':bond_timeout},
                             {'node_names': lifecycle_nodes}]),
         ]
     )
@@ -249,6 +254,7 @@ def generate_launch_description():
     ld.add_action(declare_container_name_cmd)
     ld.add_action(declare_use_respawn_cmd)
     ld.add_action(declare_log_level_cmd)
+    ld.add_action(declare_bond_timeout_cmd)
 
     # Add the actions to launch all of the navigation nodes
     ld.add_action(load_nodes)
