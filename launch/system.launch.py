@@ -65,7 +65,7 @@ def generate_launch_description():
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
         'use_sim_time',
-        default_value='True',
+        default_value='False',
         description='Use simulation (Gazebo) clock if true')
     
     declare_params_file_cmd = DeclareLaunchArgument(
@@ -78,7 +78,7 @@ def generate_launch_description():
         description='Automatically startup the nav2 stack')
 
     declare_use_composition_cmd = DeclareLaunchArgument(
-        'use_composition', default_value='True',
+        'use_composition', default_value='False',
         description='Whether to use composed bringup')
     
     declare_use_respawn_cmd = DeclareLaunchArgument(
@@ -109,7 +109,7 @@ def generate_launch_description():
             condition=IfCondition(use_composition),
             name='nav2_container',
             package='rclcpp_components',
-            executable='component_container_isolated',
+            executable='component_container',
             parameters=[configured_params, {'autostart': autostart}],
             arguments=['--ros-args', '--log-level', log_level],
             remappings=remappings,
@@ -145,7 +145,6 @@ def generate_launch_description():
     ld.add_action(declare_namespace_cmd)
     ld.add_action(declare_use_namespace_cmd)
     ld.add_action(declare_slam_cmd)
-    # ld.add_action(declare_map_yaml_cmd)
     ld.add_action(declare_use_sim_time_cmd)
     ld.add_action(declare_params_file_cmd)
     ld.add_action(declare_autostart_cmd)
