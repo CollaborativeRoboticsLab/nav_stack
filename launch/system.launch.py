@@ -78,7 +78,7 @@ def generate_launch_description():
         description='Automatically startup the nav2 stack')
 
     declare_use_composition_cmd = DeclareLaunchArgument(
-        'use_composition', default_value='False',
+        'use_composition', default_value='True',
         description='Whether to use composed bringup')
     
     declare_use_respawn_cmd = DeclareLaunchArgument(
@@ -86,7 +86,7 @@ def generate_launch_description():
         description='Whether to respawn if a node crashes. Applied when composition is disabled.')
 
     declare_log_level_cmd = DeclareLaunchArgument(
-        'log_level', default_value='debug',
+        'log_level', default_value='info',
         description='log level')
     
     declare_use_namespace_cmd = DeclareLaunchArgument(
@@ -109,7 +109,7 @@ def generate_launch_description():
             condition=IfCondition(use_composition),
             name='nav2_container',
             package='rclcpp_components',
-            executable='component_container',
+            executable='component_container_isolated',
             parameters=[configured_params, {'autostart': autostart}],
             arguments=['--ros-args', '--log-level', log_level],
             remappings=remappings,
